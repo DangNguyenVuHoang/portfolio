@@ -154,10 +154,13 @@ function hideLanguageDropdown() {
 
     // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const darkModeIcon = document.getElementById('dark-mode-icon');
+    const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+    // const darkModeIcon = document.getElementById('dark-mode-icon');
     const moonIcon = document.getElementById('moon-icon');
     const sunIcon = document.getElementById('sun-icon');
     
+    const mobileSunIcon = document.getElementById('mobile-sun-icon');    
+    const mobileMoonIcon = document.getElementById('mobile-moon-icon');
     // Check for saved dark mode preference
   // ...existing code...
     // Check for saved dark mode preference
@@ -174,6 +177,20 @@ function hideLanguageDropdown() {
         moonIcon.classList.remove('hidden');
         sunIcon.classList.add('hidden');
     }
+
+const darkMobileMode = localStorage.getItem('darkMode') === 'true' || 
+        (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // Apply initial dark mode mobile state
+    if (darkMobileMode) {
+        document.documentElement.classList.add('dark');
+        mobileMoonIcon.classList.add('hidden');
+        mobileSunIcon.classList.remove('hidden');
+    } else {
+        document.documentElement.classList.remove('dark');
+        mobileMoonIcon.classList.remove('hidden');
+        mobileSunIcon.classList.add('hidden');
+    }
     
     // Toggle dark mode
     darkModeToggle.addEventListener('click', function() {
@@ -184,26 +201,17 @@ function hideLanguageDropdown() {
         moonIcon.classList.toggle('hidden');
         sunIcon.classList.toggle('hidden');
     });
+// Toggle mobile mode
+    mobileDarkModeToggle.addEventListener('click', function() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDark);
+        
+        // Toggle icons
+        mobileMoonIcon.classList.toggle('hidden');
+        mobileSunIcon.classList.toggle('hidden');
+    });
 
-    // // Language toggle
-    // const languageToggle = document.getElementById('language-toggle');
-    // const languageButtons = document.querySelectorAll('[data-lang]');
-    
-    // // Load saved language or default to Vietnamese
-    // const savedLanguage = localStorage.getItem('language') || 'vi';
-    // updateLanguage(savedLanguage);
-    
-    // // Set initial language button text
-    // languageToggle.querySelector('span').textContent = savedLanguage.toUpperCase();
-    
-    // // Handle language change
-    // languageButtons.forEach(button => {
-    //     button.addEventListener('click', function() {
-    //         const lang = this.getAttribute('data-lang');
-    //         updateLanguage(lang);
-    //         languageToggle.querySelector('span').textContent = lang.toUpperCase();
-    //     });
-    // });
+
 
     // Contact form submission
     const contactForm = document.getElementById('contact-form');
@@ -272,14 +280,4 @@ function hideLanguageDropdown() {
 
 
 
-// Language update function
-function updateLanguage(lang) {
-    // In a real implementation, you would update all text elements on the page
-    // based on the selected language. This is just a placeholder.
-    console.log(`Language changed to ${lang}`);
-    localStorage.setItem('language', lang);
-    
-    // You would typically have a translation object and update all elements
-    // with data-i18n attributes here, similar to what's in your HTML script
-}
 
