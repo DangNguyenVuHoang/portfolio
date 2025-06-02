@@ -135,17 +135,17 @@ html {
 
 /* Thêm cờ quốc gia */
 [data-lang="vi"]::before {
-    content: "Tiếng Việt";
+    /* content: "Tiếng Việt"; */
     margin-right: 0.5rem;
 }
 
 [data-lang="en"]::before {
-    content: "English";
+    /* content: "English"; */
     margin-right: 0.5rem;
 }
 
 [data-lang="ja"]::before {
-    content: "日本語";
+    /* content: "日本語"; */
     margin-right: 0.5rem;
 }
 
@@ -191,3 +191,75 @@ html {
     from { transform: rotate(0turn); }
     to { transform: rotate(1turn); }
 }
+/* ...existing code... */
+.nav-link {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #1e2229; /* text-gray-600 */
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+}
+.dark .nav-link {
+    color: #d1d5db; /* dark:text-gray-300 */
+}
+.nav-link:hover {
+    color: #4f46e5; /* hover:text-indigo-600 */
+}
+.dark .nav-link:hover {
+    color: #818cf8; /* dark:hover:text-indigo-400 */
+}
+
+.nav-indicator {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4f46e5; /* bg-indigo-600 */
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+.dark .nav-indicator {
+    background-color: #818cf8; /* dark:bg-indigo-400 */
+}
+.group:hover .nav-indicator {
+    transform: scaleX(1);
+}
+
+.mobile-nav-link {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 0.375rem;
+    color: #374151; /* text-gray-700 */
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+.dark .mobile-nav-link {
+    color: #e5e7eb; /* dark:text-gray-200 */
+}
+.mobile-nav-link:hover {
+    background-color: #f3f4f6; /* hover:bg-gray-100 */
+}
+.dark .mobile-nav-link:hover {
+    background-color: #374151; /* dark:hover:bg-gray-700 */
+}
+
+/* Active state */
+.active .nav-indicator {
+    transform: scaleX(1);
+}
+.active {
+    color: #4f46e5 !important; /* text-indigo-600 */
+}
+.dark .active {
+    color: #818cf8 !important; /* dark:text-indigo-400 */
+}
+/* ...existing code... */

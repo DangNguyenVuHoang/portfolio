@@ -211,65 +211,35 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileSunIcon.classList.toggle('hidden');
     });
 
+    /// Form gửi tin nhắn
+    document.getElementById('contact-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
 
-    // // // Contact form submission
-    // const contactForm = document.getElementById('contact-form');
-    // if (contactForm) {
-    //     contactForm.addEventListener('submit', function (e) {
-    //         e.preventDefault();
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzf9Y0gS4H36osSUTZ3sHC1T39UIKlA66lT8JmGTFen6u3YlIhBCqB0Q2AO-qXrX_En/exec', {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            });
 
-    //         const submitButton = this.querySelector('button[type="submit"]');
-    //         const originalText = submitButton.textContent;
+            const result = await response.json();
 
-    //         // Show loading state
-    //         submitButton.disabled = true;
-    //         submitButton.classList.add('button-loading');
-
-    //         // Simulate form submission (replace with actual AJAX call)
-    //         setTimeout(() => {
-    //             submitButton.disabled = false;
-    //             submitButton.classList.remove('button-loading');
-    //             submitButton.textContent = originalText;
-
-    //             // Show success message
-    //             alert('Tin nhắn của bạn đã được gửi thành công!');
-    //             contactForm.reset();
-    //         }, 1500);
-    //     });
-    // }
-
-
-
-    /// 
-document.getElementById('contact-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
-
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    };
-
-    try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzf9Y0gS4H36osSUTZ3sHC1T39UIKlA66lT8JmGTFen6u3YlIhBCqB0Q2AO-qXrX_En/exec', {
-            method: 'POST',
-            body: JSON.stringify(formData)
-        });
-
-        const result = await response.json();
-        
-        if (result.success) {
-            alert('Gửi tin nhắn thành công!');
-            this.reset();
-        } else {
-            alert('Gửi tin nhắn thất bại, vui lòng thử lại!');
+            if (result.success) {
+                alert('Gửi tin nhắn thành công!');
+                this.reset();
+            } else {
+                alert('Gửi tin nhắn thất bại, vui lòng thử lại!');
+            }
+        } catch (error) {
+            alert('Có lỗi xảy ra, vui lòng thử lại sau!');
         }
-    } catch (error) {
-        alert('Có lỗi xảy ra, vui lòng thử lại sau!');
-    }
-});
+    });
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
