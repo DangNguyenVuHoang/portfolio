@@ -726,7 +726,7 @@ function getBotResponse(message) {
         chatState.loveLevel = 1;
         return 'Rất vui khi em đã tìm kiếm từ khoá đặc biệt này. Anh thiết lập từ khoá này để mong sẽ được em để ý đến mình nhiều hơn. Hy vọng, anh có thể bắt đầu trò chuyện với em hằng ngày và hằng giờ. Bắt đầu một mối quan hệ được cho là gì đó nghiêm túc và đặc biệt hơn. Em hãy cho anh cơ hội làm quen em nhé? 💖';
     }
-    else if (lowerMsg.includes('Oke') || lowerMsg.includes('có') || lowerMsg.includes('co') || lowerMsg.includes('được rồi') || lowerMsg.includes('ừ') || lowerMsg.includes('ưm') || lowerMsg.includes('ừm')|| lowerMsg.includes('duoc roi')) {
+    else if (lowerMsg.includes('Oke') || lowerMsg.includes('oke')  || lowerMsg.includes('có') || lowerMsg.includes('co') || lowerMsg.includes('được rồi') || lowerMsg.includes('ừ') || lowerMsg.includes('ưm') || lowerMsg.includes('ừm')|| lowerMsg.includes('duoc roi')) {
         chatState.loveTopic = true;
         chatState.loveLevel = 1;
         return 'Cảm ơn em rất nhiều, từ giờ anh hứa sẽ cố gắng. Sẽ không làm Hường thất vọng nữa, đồng thời anh chắc chắn rằng mình sẽ nghiêm túc khi quen em và không làm phụ lòng kỳ vọng của em. 😚 💖';
