@@ -540,10 +540,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle Send button click
     sendBtn.addEventListener('click', sendMessage);
 
-    // Add message to chat
     function addMessage(content, sender) {
         const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message ${sender}-message`;
+        messageDiv.className = `chat-message ${sender}-message mb-2`;
 
         const now = new Date();
         const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -560,40 +559,201 @@ document.addEventListener('DOMContentLoaded', function () {
         typingIndicators.forEach(indicator => indicator.parentElement.parentElement.remove());
 
         chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Scroll to bottom smoothly
+        chatMessages.scrollTo({
+            top: chatMessages.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
-    // Simple Bot Response Logic (Replace with actual AI API)
-    function getBotResponse(message) {
-        const lowerMsg = message.toLowerCase();
+function getBotResponse(message) {
+    const lowerMsg = message.toLowerCase();
+    const chatState = {
+    loveTopic: false,
+    loveLevel: 0,
+    userConfession: false
+};
 
-        if (lowerMsg.includes('giới thiệu') || lowerMsg.includes('bạn là ai')) {
-            return "Tôi là trợ lý ảo của Đặng Nguyễn Vũ Hoàng - một Full-stack Developer với kinh nghiệm phát triển web và ứng dụng di động. Hoàng hiện tập trung vào Reactjs và Javascript định hướng phát triển tương lai sẽ học thêm về Node.js, Java Spring Boot và những kiến thức về BackEnd.";
-        }
-        else if (lowerMsg.includes('học vấn') || lowerMsg.includes('education level')) {
-            return "Hoàng đã tốt nghiệp ngành công nghệ thông tin tại trường ĐH FPT. Có chứng chỉ giao tiếp tiếng Nhật tại FPT Academy Japan. Có khả năng đọc tài liệu tiếng anh và giao tiếp tiếng anh một cách cơ bản.";
-        }
-        else if (lowerMsg.includes('kinh nghiệm') || lowerMsg.includes('experience')) {
-            return "Hoàng có kinh nghiệm làm việc về các dự án liên quan đến Framework Reactjs và từng đã học kiến thức về Java nên cũng có cá bài tập nhỏ về lập trình Android. Có kinh nghiệm phân tích dự án công nghệ và viết bản kế hoạch để phát triển dự án(SRS). Bạn có thể xem chi tiết trong phần 'Giới thiệu' trên portfolio.";
-        }
-        else if (lowerMsg.includes('dự án') || lowerMsg.includes('project')) {
-            return "Một số dự án nổi bật của Hoàng bao gồm: Hệ thống quản hỗ trợ khách hàng OCOP lưu trữ hàng và vận chuyển áp dụng theo mô hình Dark Store, Portfolio cá nhân giới thiệu về bản thân, NextJS Templates luyện tập tạo dựng giao diện trực quan về cách bố trí và hiển thị. Bạn có thể xem chi tiết trong phần 'Dự án'.";
-        }
-        else if (lowerMsg.includes('kỹ năng') || lowerMsg.includes('skill')) {
-            return "Các kỹ năng chính của Hoàng: Front-end (React, Tailwind CSS), Back-end (JavaScript, Spring Boot), Mobile (Flutter), và Chứng chỉ tiếng Nhật tươnng đương N4. Xem thêm trong phần 'Kỹ năng' nhé!";
-        }
-        else if (lowerMsg.includes('liên hệ') || lowerMsg.includes('contact')) {
-            return "Bạn có thể liên hệ với Hoàng qua email: dangnguyenvuhoang8384@gmail.com hoặc số điện thoại: +84 346 711 532. Tất cả thông tin có trong phần 'Liên hệ'.";
-        }
-        else {
-            const randomResponses = [
-                "Tôi không chắc mình hiểu câu hỏi của bạn. Bạn có thể hỏi về thông tin portfolio, kinh nghiệm làm việc hoặc dự án cá nhân của Hoàng nhé!",
-                "Xin lỗi, tôi chỉ có thể trả lời các câu hỏi liên quan đến portfolio của Hoàng. Bạn muốn biết điều gì về kỹ năng hoặc dự án của ấy?",
-                "Câu hỏi của bạn khá thú vị! Hiện tôi chỉ được lập trình để trả lời các thắc mắc về chuyên môn của Hoàng thôi."
-            ];
-            return randomResponses[Math.floor(Math.random() * randomResponses.length)];
-        }
+    // === GENERAL QUESTIONS ===
+    if (lowerMsg.includes('giới thiệu') || lowerMsg.includes('bạn là ai')) {
+        return "Tôi là trợ lý ảo của Đặng Nguyễn Vũ Hoàng - một Full-stack Developer với kinh nghiệm phát triển web và ứng dụng di động. Hoàng hiện tập trung vào Reactjs và Javascript định hướng phát triển tương lai sẽ học thêm về Node.js, Java Spring Boot và những kiến thức về BackEnd.";
     }
+    else if (lowerMsg.includes('học vấn') || lowerMsg.includes('education level')) {
+        return "Hoàng đã tốt nghiệp ngành công nghệ thông tin tại trường ĐH FPT. Có chứng chỉ giao tiếp tiếng Nhật tại FPT Academy Japan. Có khả năng đọc tài liệu tiếng anh và giao tiếp tiếng anh một cách cơ bản.";
+    }
+    else if (lowerMsg.includes('kinh nghiệm') || lowerMsg.includes('experience')) {
+        return "Hoàng có kinh nghiệm làm việc về các dự án liên quan đến Framework Reactjs và từng đã học kiến thức về Java nên cũng có cá bài tập nhỏ về lập trình Android. Có kinh nghiệm phân tích dự án công nghệ và viết bản kế hoạch để phát triển dự án(SRS). Bạn có thể xem chi tiết trong phần 'Giới thiệu' trên portfolio.";
+    }
+    else if (lowerMsg.includes('dự án') || lowerMsg.includes('project')) {
+        return "Một số dự án nổi bật của Hoàng bao gồm: Hệ thống quản hỗ trợ khách hàng OCOP lưu trữ hàng và vận chuyển áp dụng theo mô hình Dark Store, Portfolio cá nhân giới thiệu về bản thân, NextJS Templates luyện tập tạo dựng giao diện trực quan về cách bố trí và hiển thị. Bạn có thể xem chi tiết trong phần 'Dự án'.";
+    }
+    else if (lowerMsg.includes('kỹ năng') || lowerMsg.includes('skill')) {
+        return "Các kỹ năng chính của Hoàng: Front-end (React, Tailwind CSS), Back-end (JavaScript, Spring Boot), Mobile (Flutter), và Chứng chỉ tiếng Nhật tươnng đương N4. Xem thêm trong phần 'Kỹ năng' nhé!";
+    }
+    else if (lowerMsg.includes('liên hệ') || lowerMsg.includes('contact')) {
+        return "Bạn có thể liên hệ với Hoàng qua email: dangnguyenvuhoang8384@gmail.com hoặc số điện thoại: +84 346 711 532. Tất cả thông tin có trong phần 'Liên hệ'.";
+    }
+
+    // === LOVE TOPIC HANDLING ===
+ 
+//     // Check if we're already in a love conversation
+//     if (chatState.loveTopic) {
+//     // Xử lý theo level trước
+//     if (chatState.loveLevel === 1) {
+//         if (/yêu|thích|ý/i.test(lowerMsg)) {
+//             chatState.loveLevel = 2;
+//             return `Ồ! Hoàng rất vui...`;
+//         }
+//         else if (/không|thôi/i.test(lowerMsg)) {
+//             chatState.loveTopic = false;
+//             return "Không sao cả!...";
+//         }
+//     }
+//     else if (chatState.loveLevel === 2) {
+//         if (/nhạc|phim|sở thích/i.test(lowerMsg)) {
+//             return "Hoàng cũng thích...";
+//         }
+//         if (/đồng ý|ok|yes/i.test(lowerMsg)) {
+//             chatState.loveLevel = 3;
+//             return "Tuyệt vời quá!...";
+//         }
+//     }
+//     else if (chatState.loveLevel === 3) {
+//         return "Hoàng rất mong chờ...";
+//     }
+
+//     // Xử lý cảm xúc riêng (không phụ thuộc level)
+//     if (/buồn|sad|thất tình/i.test(lowerMsg)) {
+//         return `Ôi, trái tim bạn...`;
+//     }
+//     if (/cô đơn|lonely|một mình/i.test(lowerMsg)) {
+//         return `Đôi khi ai cũng...`;
+//     }
+
+//      // Level 1: Initial love topic
+//         if (chatState.loveLevel === 1) {
+//             if (lowerMsg.includes('yêu') || lowerMsg.includes('thích') || lowerMsg.includes('ý')) {
+//                 chatState.loveLevel = 2;
+//                 chatState.userConfession = true;
+//                 return `Ồ! Hoàng rất vui khi bạn cởi mở như vậy ❤️\nBạn có thể kể thêm về sở thích của mình không? Ví dụ như bạn thích nhạc gì, hay làm gì cuối tuần?`;
+//             }
+//             else if (lowerMsg.includes('không') || lowerMsg.includes('thôi')) {
+//                 chatState.loveTopic = false;
+//                 chatState.loveLevel = 0;
+//                 return "Không sao cả! Hoàng rất trân trọng sự thẳng thắn của bạn 😊\nMình vẫn có thể làm bạn tốt mà nhỉ?";
+//             }
+//         }
+        
+//         // Level 2: Getting to know each other
+//         else if (chatState.loveLevel === 2) {
+//             if (lowerMsg.includes('nhạc') || lowerMsg.includes('phim') || lowerMsg.includes('sở thích')) {
+//                 return "Hoàng cũng thích điều đó lắm! 🎵\nCuối tuần này mình có thể cùng xem phim/nghe nhạc chung online không?";
+//             }
+//             if (lowerMsg.includes('đồng ý') || lowerMsg.includes('ok') || lowerMsg.includes('yes')) {
+//                 chatState.loveLevel = 3;
+//                 return "Tuyệt vời quá! 💑\nHoàng sẽ gửi bạn chi tiết qua email nhé. Bạn nhớ kiểm tra hộp thư nha!";
+//             }
+//         }
+        
+//         // Level 3: Date planning
+//         else if (chatState.loveLevel === 3) {
+//             return "Hoàng rất mong chờ buổi hẹn của chúng ta! ❤️";
+//         }
+        
+//         // Emotional support responses
+//         if (lowerMsg.includes('buồn') || lowerMsg.includes('sad') || lowerMsg.includes('thất tình')) {
+//             return `Ôi, trái tim bạn đang tổn thương sao? 💔\nHoàng luôn sẵn lòng lắng nghe nếu bạn muốn chia sẻ.`;
+//         }
+//         else if (lowerMsg.includes('cô đơn') || lowerMsg.includes('lonely') || lowerMsg.includes('một mình')) {
+//             return `Đôi khi ai cũng có những khoảnh khắc cô đơn... 🤗\nNhưng bạn không cô đơn đâu, Hoàng luôn ở đây lắng nghe bạn.`;
+//         }
+// }
+    // if (chatState.loveTopic) {
+    //     // Level 1: Initial love topic
+    //     if (chatState.loveLevel === 1) {
+    //         if (lowerMsg.includes('yêu') || lowerMsg.includes('thích') || lowerMsg.includes('ý')) {
+    //             chatState.loveLevel = 2;
+    //             chatState.userConfession = true;
+    //             return `Ồ! Hoàng rất vui khi bạn cởi mở như vậy ❤️\nBạn có thể kể thêm về sở thích của mình không? Ví dụ như bạn thích nhạc gì, hay làm gì cuối tuần?`;
+    //         }
+    //         else if (lowerMsg.includes('không') || lowerMsg.includes('thôi')) {
+    //             chatState.loveTopic = false;
+    //             chatState.loveLevel = 0;
+    //             return "Không sao cả! Hoàng rất trân trọng sự thẳng thắn của bạn 😊\nMình vẫn có thể làm bạn tốt mà nhỉ?";
+    //         }
+    //     }
+        
+    //     // Level 2: Getting to know each other
+    //     else if (chatState.loveLevel === 2) {
+    //         if (lowerMsg.includes('nhạc') || lowerMsg.includes('phim') || lowerMsg.includes('sở thích')) {
+    //             return "Hoàng cũng thích điều đó lắm! 🎵\nCuối tuần này mình có thể cùng xem phim/nghe nhạc chung online không?";
+    //         }
+    //         if (lowerMsg.includes('đồng ý') || lowerMsg.includes('ok') || lowerMsg.includes('yes')) {
+    //             chatState.loveLevel = 3;
+    //             return "Tuyệt vời quá! 💑\nHoàng sẽ gửi bạn chi tiết qua email nhé. Bạn nhớ kiểm tra hộp thư nha!";
+    //         }
+    //     }
+        
+    //     // Level 3: Date planning
+    //     else if (chatState.loveLevel === 3) {
+    //         return "Hoàng rất mong chờ buổi hẹn của chúng ta! ❤️";
+    //     }
+        
+    //     // Emotional support responses
+    //     if (lowerMsg.includes('buồn') || lowerMsg.includes('sad') || lowerMsg.includes('thất tình')) {
+    //         return `Ôi, trái tim bạn đang tổn thương sao? 💔\nHoàng luôn sẵn lòng lắng nghe nếu bạn muốn chia sẻ.`;
+    //     }
+    //     else if (lowerMsg.includes('cô đơn') || lowerMsg.includes('lonely') || lowerMsg.includes('một mình')) {
+    //         return `Đôi khi ai cũng có những khoảnh khắc cô đơn... 🤗\nNhưng bạn không cô đơn đâu, Hoàng luôn ở đây lắng nghe bạn.`;
+    //     }
+    // }
+
+    // === NEW LOVE TOPIC INITIATION ===
+    if (lowerMsg.includes('yêu') || lowerMsg.includes('người yêu') || lowerMsg.includes('thích')|| lowerMsg.includes('tình cảm') || lowerMsg.includes('cô đơn') || 
+        lowerMsg.includes('lover') || lowerMsg.includes('relationship') || lowerMsg.includes('buồn')) {
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return "Hoàng hiện đang độc thân nè 💖. Bạn hỏi vậy... là có ý gì đặc biệt à? 😊";
+    }
+    else if (lowerMsg.includes('hẹn hò') || lowerMsg.includes('date') || lowerMsg.includes('gặp mặt')) {
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return `Ồ! Bạn muốn gặp Hoàng à? 😊\nHiện tại Hoàng đang tập trung vào công việc phát triển bản thân...`;
+    }
+    else if (lowerMsg.includes('Hường') || lowerMsg.includes('Huong') || lowerMsg.includes('hương') || lowerMsg.includes('huong')) {
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return 'Rất vui khi em đã tìm kiếm từ khoá đặc biệt này. Anh thiết lập từ khoá này để mong sẽ được em để ý đến mình nhiều hơn. Hy vọng, anh có thể bắt đầu trò chuyện với em hằng ngày và hằng giờ. Bắt đầu một mối quan hệ được cho là gì đó nghiêm túc và đặc biệt hơn. Em hãy cho anh cơ hội làm quen em nhé? 💖';
+    }
+    else if (lowerMsg.includes('Oke') || lowerMsg.includes('có') || lowerMsg.includes('co') || lowerMsg.includes('được rồi') || lowerMsg.includes('ừ') || lowerMsg.includes('ưm') || lowerMsg.includes('ừm')|| lowerMsg.includes('duoc roi')) {
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return 'Cảm ơn em rất nhiều, từ giờ anh hứa sẽ cố gắng. Sẽ không làm Hường thất vọng nữa, đồng thời anh chắc chắn rằng mình sẽ nghiêm túc khi quen em và không làm phụ lòng kỳ vọng của em. 😚 💖';
+    }
+    else if (lowerMsg.includes('hông') || lowerMsg.includes('khong') || lowerMsg.includes('không') || lowerMsg.includes('hong') || lowerMsg.includes('ko')){
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return 'Hãy cho anh cơ hội làm quen em đi mà, anh năng nỉ đó! 🥹 🥹';
+    }
+
+    else if (lowerMsg.includes('cưới') || lowerMsg.includes('marry') || lowerMsg.includes('kết hôn')) {
+        return `Wow, nghiêm túc vậy sao? 💍\nHoàng nghĩ hôn nhân là chuyện hệ trọng đời người...`;
+    }
+    else if (lowerMsg.includes('tán') || lowerMsg.includes('flirt') || lowerMsg.includes('tỏ tình')) {
+        chatState.loveTopic = true;
+        chatState.loveLevel = 1;
+        return `Bạn rất dễ thương đấy! 😊\nNhưng Hoàng nghĩ chúng ta nên tìm hiểu nhau nhiều hơn...`;
+    }
+
+    // === DEFAULT RESPONSES ===
+    const randomResponses = [
+        "Tôi không chắc mình hiểu câu hỏi của bạn. Bạn có thể hỏi về thông tin portfolio, kinh nghiệm làm việc hoặc dự án cá nhân của Hoàng nhé!",
+        "Xin lỗi, tôi chỉ có thể trả lời các câu hỏi liên quan đến portfolio của Hoàng. Bạn muốn biết điều gì về kỹ năng hoặc dự án của ấy?",
+        "Câu hỏi của bạn khá thú vị! Hiện tôi chỉ được lập trình để trả lời các thắc mắc về chuyên môn của Hoàng thôi."
+    ];
+    return randomResponses[Math.floor(Math.random() * randomResponses.length)];
+}
 
     // Auto-open after 30 seconds if not interacted
     setTimeout(() => {

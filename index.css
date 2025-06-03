@@ -378,53 +378,103 @@ html {
 
 /* //// */
 
-/* Chat Message Styles */
-  .chat-message {
+/* Container for chat messages - Đã thêm max-height */
+#chat-messages {
+    max-height: 300px;  /* Giới hạn chiều cao tối đa */
+    height: auto;       /* Chiều cao tự động theo nội dung */
+    min-height: 100px;  /* Chiều cao tối thiểu khi ít tin nhắn */
+    overflow-y: auto;   /* Tự động hiển thị thanh scroll khi cần */
+    scroll-behavior: smooth;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Phần còn lại giữ nguyên */
+.chat-message {
     max-width: 85%;
-  }
-  
-  .bot-message {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Message content styles */
+.message-content {
+    word-wrap: break-word;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    line-height: 1.5;
+}
+
+/* Bot message alignment */
+.bot-message {
     margin-right: auto;
-  }
-  
-  .user-message {
+    align-self: flex-start;
+}
+
+.bot-message .message-content {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.dark .bot-message .message-content {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+/* User message alignment */
+.user-message {
     margin-left: auto;
-  }
-  
-  .user-message .message-content {
+    align-self: flex-end;
+}
+
+.user-message .message-content {
     background-color: #6366f1;
     color: white;
-  }
-  
-  /* Custom Scrollbar */
-  #chat-messages::-webkit-scrollbar {
+}
+
+/* Message time text */
+.message-time {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    text-align: right;
+}
+
+.dark .message-time {
+    color: #9ca3af;
+}
+
+/* Custom Scrollbar */
+#chat-messages::-webkit-scrollbar {
     width: 6px;
-  }
-  
-  #chat-messages::-webkit-scrollbar-track {
+}
+
+#chat-messages::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 3px;
-  }
-  
-  #chat-messages::-webkit-scrollbar-thumb {
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
     background: #c7d2fe;
     border-radius: 3px;
-  }
-  
-  .dark #chat-messages::-webkit-scrollbar-track {
+}
+
+.dark #chat-messages::-webkit-scrollbar-track {
     background: #374151;
-  }
-  
-  .dark #chat-messages::-webkit-scrollbar-thumb {
+}
+
+.dark #chat-messages::-webkit-scrollbar-thumb {
     background: #4f46e5;
-  }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .chat-message {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
