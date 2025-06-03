@@ -93,7 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const languageToggle = document.getElementById('language-toggle');
     const languageDropdown = document.getElementById('language-dropdown');
     const languageArrow = document.getElementById('language-arrow');
-    const currentLanguage = document.getElementById('current-language');
+    // const currentLanguage = document.getElementById('current-language');
+
+
 
     // Toggle dropdown ngôn ngữ
     languageToggle.addEventListener('click', function (e) {
@@ -125,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
     // Hàm ẩn dropdown
     function hideLanguageDropdown() {
         languageDropdown.classList.add('hidden');
@@ -132,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
         languageDropdown.classList.add('scale-y-0');
         languageArrow.classList.remove('rotate-180');
     }
-
 
 
     // Mobile menu toggle
@@ -277,8 +279,329 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(bar);
     });
 
+    ///
+
+    // 1. Lấy dữ liệu từ GitHub API
+    async function fetchGitHubStats() {
+        try {
+            const response = await fetch('https://api.github.com/users/DangNguyenVuHoang');
+            if (!response.ok) throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching GitHub data:', error);
+            return null;
+        }
+    }
+
+    // 2. Animation counter
+    function animateCounter(elementId, target, duration = 2000) {
+        const element = document.getElementById(elementId);
+        const start = 0;
+        const increment = target / (duration / 16); // ~60fps
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                clearInterval(timer);
+                current = target;
+            }
+            element.textContent = Math.floor(current).toLocaleString();
+        }, 16);
+    }
+
+    // 3. Ước lượng số commit (GitHub API không cung cấp tổng commit)
+    async function estimateTotalCommits(username) {
+        try {
+            const reposRes = await fetch(`https://api.github.com/users/${username}/repos`);
+            const repos = await reposRes.json();
+
+            let totalCommits = 0;
+            // Giới hạn kiểm tra 5 repo đầu để tránh rate limit
+            for (const repo of repos.slice(0, 5)) {
+                const commitsRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/contributors`);
+                const contributors = await commitsRes.json();
+                const myContributions = contributors.find(c => c.login === username);
+                if (myContributions) totalCommits += myContributions.contributions;
+            }
+
+            // Ước lượng cho tất cả repo
+            return Math.floor(totalCommits * (repos.length / 5));
+        } catch (error) {
+            console.error('Error estimating commits:', error);
+            return 1200; // Fallback number
+        }
+    }
+
+    // 4. Khởi tạo
+    async function initGitHubStats() {
+        const data = await fetchGitHubStats();
+        if (data) {
+            animateCounter('repo-count', data.public_repos);
+            animateCounter('follower-count', data.followers);
+
+            const totalCommits = await estimateTotalCommits('DangNguyenVuHoang');
+            animateCounter('commit-count', totalCommits);
+        } else {
+            // Fallback values nếu API fail
+            animateCounter('repo-count', 15);
+            animateCounter('follower-count', 42);
+            animateCounter('commit-count', 1284);
+        }
+    }
+
+    // Intersection Observer - Chỉ load khi section hiển thị
+    const observer1 = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            initGitHubStats();
+            observer1.unobserve(entries[0].target);
+        }
+    }, { threshold: 0.1 });
+
+    observer1.observe(document.getElementById('stats'));
+
+    //////////
+
+    // Greeting Modal Functionality
+    class GreetingModal {
+        constructor() {
+            this.modal = document.getElementById('greeting-modal');
+            this.nameInput = document.getElementById('visitor-name');
+            this.saveBtn = document.getElementById('save-name-btn');
+            this.skipBtn = document.getElementById('skip-btn');
+            this.closeBtn = document.getElementById('close-greeting-btn');
+            this.nameInputContainer = document.getElementById('name-input-container');
+            this.welcomeBackContainer = document.getElementById('welcome-back-container');
+            this.savedNameElement = document.getElementById('saved-name');
+            this.greetingText = document.getElementById('greeting-text');
+
+            this.init();
+        }
+
+        init() {
+            const lastShown = localStorage.getItem('greetingLastShown');
+            const now = Date.now();
+            const oneDay = 24 * 60 * 60 * 1000;
+
+            if (!lastShown || (now - lastShown > oneDay)) {
+                setTimeout(() => this.showGreeting(), 1000);
+            }
+
+            this.setupEvents();
+            this.updateGreetingText();
+        }
+
+        showGreeting() {
+            const savedName = localStorage.getItem('visitorName');
+
+            if (savedName) {
+                this.savedNameElement.textContent = savedName;
+                this.nameInputContainer.classList.add('hidden');
+                this.welcomeBackContainer.classList.remove('hidden');
+            } else {
+                this.nameInputContainer.classList.remove('hidden');
+                this.welcomeBackContainer.classList.add('hidden');
+            }
+
+            this.modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        hideGreeting() {
+            this.modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            localStorage.setItem('greetingLastShown', Date.now());
+        }
+
+        saveName() {
+            const name = this.nameInput.value.trim();
+            if (name) {
+                localStorage.setItem('visitorName', name);
+                this.savedNameElement.textContent = name;
+                this.nameInputContainer.classList.add('hidden');
+                this.welcomeBackContainer.classList.remove('hidden');
+            }
+        }
+
+        updateGreetingText() {
+            const hour = new Date().getHours();
+            let greeting = 'Xin chào';
+
+            if (hour < 11) greeting = 'Chào buổi sáng';
+            else if (hour < 13) greeting = 'Chào buổi trưa';
+            else if (hour < 18) greeting = 'Chào buổi chiều';
+            else greeting = 'Chào buổi tối';
+
+            this.greetingText.textContent = `${greeting}! 👋`;
+        }
+
+        setupEvents() {
+            this.saveBtn.addEventListener('click', () => this.saveName());
+            this.skipBtn.addEventListener('click', () => this.hideGreeting());
+            this.closeBtn.addEventListener('click', () => this.hideGreeting());
+
+            this.nameInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.saveName();
+            });
+
+            this.modal.addEventListener('click', (e) => {
+                if (e.target === this.modal) this.hideGreeting();
+            });
+        }
+    }
+
+    new GreetingModal();
+
+
+
+    /////
+
+    // DOM Elements
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatIcon = document.getElementById('chat-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const minimizeBtn = document.getElementById('minimize-chat');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+
+    // State
+    let isChatOpen = false;
+    let isProcessing = false;
+
+    // Toggle Chat Window
+    chatbotToggle.addEventListener('click', () => {
+        isChatOpen = !isChatOpen;
+        chatbotWindow.classList.toggle('hidden', !isChatOpen);
+        chatIcon.classList.toggle('hidden', isChatOpen);
+        closeIcon.classList.toggle('hidden', !isChatOpen);
+
+        if (isChatOpen) {
+            chatbotWindow.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                chatbotWindow.style.transform = 'translateY(0)';
+            }, 10);
+        }
+    });
+
+    // Minimize Chat
+    minimizeBtn.addEventListener('click', () => {
+        chatbotWindow.classList.add('hidden');
+        chatIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        isChatOpen = false;
+    });
+
+    // Send Message
+    function sendMessage() {
+        const message = userInput.value.trim();
+        if (message === '' || isProcessing) return;
+
+        // Add user message to chat
+        addMessage(message, 'user');
+        userInput.value = '';
+        isProcessing = true;
+
+        // Show typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'chat-message bot-message';
+        typingIndicator.innerHTML = `
+      <div class="message-content bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-lg">
+        <div class="flex space-x-2">
+          <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.2s"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.4s"></div>
+        </div>
+      </div>
+    `;
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simulate API call (replace with actual API call)
+        setTimeout(() => {
+            // Remove typing indicator
+            typingIndicator.remove();
+
+            // Get bot response
+            const response = getBotResponse(message);
+            addMessage(response, 'bot');
+            isProcessing = false;
+        }, 1000 + Math.random() * 2000); // Random delay 1-3s
+    }
+
+    // Handle Enter key
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Handle Send button click
+    sendBtn.addEventListener('click', sendMessage);
+
+    // Add message to chat
+    function addMessage(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${sender}-message`;
+
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        messageDiv.innerHTML = `
+      <div class="message-content ${sender === 'user' ? 'bg-indigo-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'} p-3 rounded-lg">
+        ${content}
+      </div>
+      <div class="message-time text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">${timeString}</div>
+    `;
+
+        // Remove typing indicator if exists
+        const typingIndicators = document.querySelectorAll('.chat-message .flex.space-x-2');
+        typingIndicators.forEach(indicator => indicator.parentElement.parentElement.remove());
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Simple Bot Response Logic (Replace with actual AI API)
+    function getBotResponse(message) {
+        const lowerMsg = message.toLowerCase();
+
+        if (lowerMsg.includes('giới thiệu') || lowerMsg.includes('bạn là ai')) {
+            return "Tôi là trợ lý ảo của Đặng Nguyễn Vũ Hoàng - một Full-stack Developer với kinh nghiệm phát triển web và ứng dụng di động. Hoàng hiện tập trung vào React, Node.js và các công nghệ front-end hiện đại.";
+        }
+        else if (lowerMsg.includes('kinh nghiệm') || lowerMsg.includes('experience')) {
+            return "Hoàng có 3+ năm kinh nghiệm phát triển phần mềm, từng làm việc với nhiều công nghệ như React, Node.js, Java Spring Boot và Flutter. Bạn có thể xem chi tiết trong phần 'Giới thiệu' trên portfolio.";
+        }
+        else if (lowerMsg.includes('dự án') || lowerMsg.includes('project')) {
+            return "Một số dự án nổi bật của Hoàng bao gồm: Hệ thống quản lý doanh nghiệp, Ứng dụng đặt lịch spa, và Website thương mại điện tử. Bạn có thể xem chi tiết trong phần 'Dự án'.";
+        }
+        else if (lowerMsg.includes('kỹ năng') || lowerMsg.includes('skill')) {
+            return "Các kỹ năng chính của Hoàng: Front-end (React, Tailwind CSS), Back-end (Node.js, Java), Mobile (Flutter), và Tiếng Nhật N2. Xem thêm trong phần 'Kỹ năng' nhé!";
+        }
+        else if (lowerMsg.includes('liên hệ') || lowerMsg.includes('contact')) {
+            return "Bạn có thể liên hệ với Hoàng qua email: dangnguyenvuhoang8384@gmail.com hoặc số điện thoại: +84 346 711 532. Tất cả thông tin có trong phần 'Liên hệ'.";
+        }
+        else {
+            const randomResponses = [
+                "Tôi không chắc mình hiểu câu hỏi của bạn. Bạn có thể hỏi về thông tin portfolio, kinh nghiệm làm việc hoặc dự án cá nhân của Hoàng nhé!",
+                "Xin lỗi, tôi chỉ có thể trả lời các câu hỏi liên quan đến portfolio của Hoàng. Bạn muốn biết điều gì về kỹ năng hoặc dự án của ấy?",
+                "Câu hỏi của bạn khá thú vị! Hiện tôi chỉ được lập trình để trả lời các thắc mắc về chuyên môn của Hoàng thôi."
+            ];
+            return randomResponses[Math.floor(Math.random() * randomResponses.length)];
+        }
+    }
+
+    // Auto-open after 30 seconds if not interacted
+    setTimeout(() => {
+        if (!localStorage.getItem('chatbotShown')) {
+            chatbotToggle.click();
+            localStorage.setItem('chatbotShown', 'true');
+        }
+    }, 30000);
 
 });
+
 
 
 
