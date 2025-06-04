@@ -1,15 +1,16 @@
 # Portfolio Website
 
 ![Portfolio Preview](https://img.shields.io/badge/status-active-success.svg) 
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/your-repo) 
+![GitHub last commit](https://img.shields.io/github/last-commit/DangNguyenVuHoang/portfolio) 
 ![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/your-repo)
 ![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black)
 
-🌐 [Live Demo](https://your-portfolio.vercel.app) | 🚀 [GitHub Repo](https://github.com/yourusername/your-repo)
+🌐 [Live Demo](https://your-portfolio.vercel.app) | 🚀 [GitHub Repo]([https://github.com/yourusername/your-repo](https://github.com/DangNguyenVuHoang/portfolio.git))
 
 A personal portfolio website showcasing my skills, experience, and contact information.
 
-![Portfolio Screenshot](./screenshots/preview.png) <!-- Add your screenshot file here -->
+![Portfolio Screenshot](<img width="1506" alt="Ảnh màn hình 2025-06-04 lúc 14 53 57" src="https://github.com/user-attachments/assets/11613f71-2889-432e-9f0e-01b5c994c01d" />
+) <!-- Add your screenshot file here -->
 
 ## 🚀 Technologies Used
 
