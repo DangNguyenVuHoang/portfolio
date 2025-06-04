@@ -1,9 +1,9 @@
 # Portfolio Website
 
-![Portfolio Preview](https://img.shields.io/badge/status-active-success.svg) 
+![Portfolio Preview](<img width="1506" alt="Ảnh màn hình 2025-06-04 lúc 14 53 57" src="https://github.com/user-attachments/assets/11613f71-2889-432e-9f0e-01b5c994c01d" />) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/DangNguyenVuHoang/portfolio) 
-![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/your-repo)
-![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black)
+![GitHub repo size](https://img.shields.io/github/repo-size/DangNguyenVuHoang/portfolio)
+
 
 🌐 [Live Demo](https://your-portfolio.vercel.app) | 🚀 [GitHub Repo]([https://github.com/yourusername/your-repo](https://github.com/DangNguyenVuHoang/portfolio.git))
 
@@ -15,10 +15,10 @@ A personal portfolio website showcasing my skills, experience, and contact infor
 ## 🚀 Technologies Used
 
 - **Frontend**: 
-  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
-  ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white)
-  ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white)
-  ![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+  ![JavaScript]
+  ![HTML5]
+  ![CSS3]
+  ![Tailwind CSS]
 
 ## ✨ Key Features
 
@@ -57,8 +57,16 @@ This project runs on a local live server. To test:
 3. Right-click on `index.html` and select "Open with Live Server"
 4. The site will automatically open at `http://localhost:5500`
 
-## 🛠️ Installation (Alternative)
+## 📞 Contact
+📧 Email: dangnguyenvuhoang8384@gmail.com
 
-1. Clone repository:
+## 🛠️ Installation (Alternative)
+Clone repository:
 ```bash
-git clone https://github.com/yourusername/your-repo.git
+git clone https://github.com/yourusername/your-repo](https://github.com/DangNguyenVuHoang/portfolio.git
+
+
+
+
+
+
