@@ -1,7 +1,7 @@
 name: Sync to AccountB and Deploy Vercel
 on:
   push:
-    branches: [main] # Kích hoạt khi push lên branch `main`
+    branches: main # Kích hoạt khi push lên branch `main`
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
