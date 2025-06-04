@@ -1,0 +1,27 @@
+name: Sync to AccountB and Deploy Vercel
+on:
+  push:
+    branches: [main] # Kích hoạt khi push lên branch `main`
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Bước 1: Checkout code từ AccountA
+      - uses: actions/checkout@v4
+
+      # Bước 2: Đồng bộ code sang AccountB
+      - name: Push to AccountB
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCOUNT_B_TOKEN }}
+          repository: AccountB/repo-name # Thay bằng tên repo của AccountB
+          branch: main # Branch đích trên AccountB
+          force: true # Ghi đè nếu cần
+
+      # Bước 3: Kích hoạt deploy Vercel (qua webhook hoặc API)
+      - name: Trigger Vercel Deploy
+        run: |
+          curl -X POST "https://api.vercel.com/v1/integrations/deploy?projectId=9JLjNex7wM9xh5mMaddRQBv5KQ8m" \
+          -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # Token Vercel của AccountB
