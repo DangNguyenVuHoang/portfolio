@@ -14,7 +14,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.ACCOUNT_B_TOKEN }}
-          repository: AccountB/repo-name # Thay bằng tên repo của AccountB
+          repository: DangNguyenVuHoang/portfolio # Thay bằng tên repo của AccountB
           branch: main # Branch đích trên AccountB
           force: true # Ghi đè nếu cần
 
