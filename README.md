@@ -1,6 +1,6 @@
 # Portfolio Website
 
-![Portfolio Preview](<img width="1506" alt="Ảnh màn hình 2025-06-04 lúc 14 53 57" src="https://github.com/user-attachments/assets/11613f71-2889-432e-9f0e-01b5c994c01d" />) 
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/DangNguyenVuHoang/portfolio) 
 ![GitHub repo size](https://img.shields.io/github/repo-size/DangNguyenVuHoang/portfolio)
 
@@ -9,8 +9,8 @@
 
 A personal portfolio website showcasing my skills, experience, and contact information.
 
-![Portfolio Screenshot](<img width="1506" alt="Ảnh màn hình 2025-06-04 lúc 14 53 57" src="https://github.com/user-attachments/assets/11613f71-2889-432e-9f0e-01b5c994c01d" />
-) <!-- Add your screenshot file here -->
+Portfolio Screenshot: <img width="1491" alt="Ảnh màn hình 2025-06-04 lúc 15 20 21" src="https://github.com/user-attachments/assets/639754eb-b0e5-46fe-84ad-8bbc23d30852" />
+
 
 ## 🚀 Technologies Used
 
