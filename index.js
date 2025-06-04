@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzf9Y0gS4H36osSUTZ3sHC1T39UIKlA66lT8JmGTFen6u3YlIhBCqB0Q2AO-qXrX_En/exec', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 body: JSON.stringify(formData)
             });
