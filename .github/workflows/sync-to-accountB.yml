@@ -18,7 +18,7 @@ jobs:
 
       - name: Trigger Vercel Deploy
         run: |
-          curl -X POST "https://api.vercel.com/v1/integrations/deploy?projectId=9JLjNex7wM9xh5mMaddRQBv5KQ8m" \
+          curl -X POST "https://api.vercel.com/v1/integrations/deploy?projectId=8o8VsCsX9BjC7Gbo6YwGzS4HikfF" \
           -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
