@@ -15,10 +15,10 @@ Portfolio Screenshot: <img width="1491" alt="Ảnh màn hình 2025-06-04 lúc
 ## 🚀 Technologies Used
 
 - **Frontend**: 
-  ![JavaScript]
-  ![HTML5]
-  ![CSS3]
-  ![Tailwind CSS]
+  JavaScript
+  HTML5
+  CSS3
+  Tailwind CSS
 
 ## ✨ Key Features
 
