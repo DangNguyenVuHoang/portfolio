@@ -11,47 +11,52 @@
     <!-- <script src="./service/config.example.js"></script> -->
     <script src="./service/config.js"></script>
      <script src="./service/translations.js"></script>
+     <script src="./service/chatbotai.js"></script>
 
 </head>
 
 <body class="bg-gray-100 font-sans">
 
-    <!-- Greeting Modal -->
-    <div id="greeting-modal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-        <div class="relative flex items-center justify-center min-h-screen p-4">
-            <div
-                class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 mx-4 max-w-md w-full animate-[slideDown_0.5s]">
-                <h3 class="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white" id="greeting-text">Xin
-                    chào! 👋</h3>
-                <div id="name-input-container">
-                    <input type="text" id="visitor-name" placeholder="Tên của bạn là..."
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
-                        autocomplete="off">
-                    <div class="flex gap-3 mt-4">
-                        <button id="save-name-btn"
-                            class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors duration-200">
-                            Lưu tên
-                        </button>
-                        <button id="skip-btn"
-                            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white py-2 px-4 rounded-lg transition-colors duration-200">
-                            Bỏ qua
-                        </button>
-                    </div>
-                </div>
-                <div id="welcome-back-container" class="hidden text-center">
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        Chào mừng trở lại,
-                        <span id="saved-name" class="font-semibold text-indigo-600 dark:text-indigo-400"></span>!
-                    </p>
-                    <button id="close-greeting-btn"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg transition-colors duration-200">
-                        Đóng
+<!-- Greeting Modal -->
+<div id="greeting-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div class="relative flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 mx-4 max-w-md w-full animate-[slideDown_0.5s]">
+            <h3 class="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white" id="greeting-text" 
+                data-i18n="greeting">Xin chào! 👋</h3>
+            <div id="name-input-container">
+                <input type="text" id="visitor-name" 
+                       data-i18n-placeholder="name_placeholder"
+                       placeholder="Tên của bạn là..."
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+                    autocomplete="off">
+                <div class="flex gap-3 mt-4">
+                    <button id="save-name-btn"
+                        class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                        data-i18n="save_name">
+                        Lưu tên
+                    </button>
+                    <button id="skip-btn"
+                        class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                        data-i18n="skip">
+                        Bỏ qua
                     </button>
                 </div>
             </div>
+            <div id="welcome-back-container" class="hidden text-center">
+                <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="welcome_back">
+                    Chào mừng trở lại,
+                    <span id="saved-name" class="font-semibold text-indigo-600 dark:text-indigo-400"></span>!
+                </p>
+                <button id="close-greeting-btn"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg transition-colors duration-200"
+                    data-i18n="close">
+                    Đóng
+                </button>
+            </div>
         </div>
     </div>
+</div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-white backdrop-blur-sm shadow-sm z-50 dark:bg-gray-900/90 transition-all duration-300">

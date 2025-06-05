@@ -15,6 +15,14 @@
             contact_me: "Liên hệ với tôi",
             send_message: "Gửi tin nhắn",
             // Thêm các bản dịch khác tại đây
+            //Lời chào đầu tiên
+            // ... các bản dịch hiện có ...
+        greeting: "Xin chào! 👋",
+        name_placeholder: "Tên của bạn là...",
+        save_name: "Lưu tên",
+        skip: "Bỏ qua",
+        welcome_back: "Chào mừng trở lại, {name}!",
+        close: "Đóng"
         },
         en: {
             home: "Home",
@@ -30,6 +38,13 @@
             contact_me: "Contact me",
             send_message: "Send message",
             // Thêm các bản dịch khác tại đây
+            //Lời chào đầu tiên
+            greeting: "Hello! 👋",
+        name_placeholder: "Your name is...",
+        save_name: "Save name",
+        skip: "Skip",
+        welcome_back: "Welcome back, {name}!",
+        close: "Close"
         },
         ja: {
             home: "ホーム",
@@ -45,6 +60,13 @@
             contact_me: "お問い合わせ",
             send_message: "メッセージを送る",
             // Thêm các bản dịch khác tại đây
+            // Lời chào đầu tiên
+            greeting: "こんにちは！ 👋",
+        name_placeholder: "あなたの名前は...",
+        save_name: "名前を保存",
+        skip: "スキップ",
+        welcome_back: "おかえりなさい、{name}さん！",
+        close: "閉じる"
         }
     };
 
