@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function downloadSampleCV() {
     // Đường dẫn đến file CV mẫu - thay đổi này thành đường dẫn thực tế của bạn
-    const cvUrl = 'https://drive.usercontent.google.com/u/0/uc?id=1oLO1CEHGaHORWti5KROONCvy9MQUrIeH&export=download';
+    // const cvUrl = 'https://drive.usercontent.google.com/u/0/uc?id=1oLO1CEHGaHORWti5KROONCvy9MQUrIeH&export=download';
+   const cvUrl = 'https://drive.usercontent.google.com/u/0/uc?id=14oouql6ExhZSja8Wm_imgj1P5P0k2PwA&export=download';
+   
     
     // Tên file khi tải về - có thể thay đổi
     const fileName = 'CV-DangNguyenVuHoang.pdf';
