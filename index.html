@@ -13,6 +13,7 @@
     <script src="./service/translations.js"></script>
     <script src="./service/chatbotai.js"></script>
     <script src="./service/downloadcv.js"></script>
+    
 
 </head>
 
@@ -88,6 +89,11 @@
                     </a>
                     <a href="#projects" class="nav-link relative group" data-i18n="projects">
                         Dự án
+                        <span class="nav-indicator"></span>
+                    </a>
+                    
+                     <a href="#activities" class="nav-link relative group" data-i18n="activities">
+                        Hoạt động
                         <span class="nav-indicator"></span>
                     </a>
                     <a href="#contact" class="nav-link relative group" data-i18n="contact">
@@ -172,6 +178,9 @@
                 </a>
                 <a href="#projects" class="mobile-nav-link" data-i18n="projects">
                     Dự án
+                </a>
+                <a href="#activities" class="mobile-nav-link" data-i18n="activities">
+                    Hoạt động
                 </a>
                 <a href="#contact" class="mobile-nav-link" data-i18n="contact">
                     Liên hệ
@@ -854,6 +863,98 @@
             </div>
         </div>
     </section>
+
+<!-- Life activities Section -->
+<section id="activities" class="pt-28 pb-24 px-6 text-white relative overflow-hidden">
+    <!-- Background image với overlay và blur tinh tế -->
+    <div class="absolute inset-0">
+        <img src="https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-nen-nhat-ban-full-hd-mua-hoa-anh-dao.jpg" 
+             alt="Background"
+             class="w-full h-full object-cover object-center">
+        <div class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-[2px]"></div>
+    </div>
+
+    <div class="container mx-auto relative z-10">
+        <!-- Section Title -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="life_experiences">
+                Hành Trình Của Tôi
+            </h2>
+            <div class="w-24 h-1 bg-yellow-300 mx-auto"></div>
+        </div>
+
+        <!-- Experiences Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Education -->
+            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:shadow-lg transition duration-300 border border-white/20 hover:border-yellow-300/50">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-400 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold" data-i18n="education">Học Tập</h3>
+                </div>
+                <p class="text-gray-200 mb-4" data-i18n="education_desc">
+                    Tốt nghiệp ngành Công nghệ Thông tin, chuyên ngành Kỹ thuật Phần mềm. Những năm tháng đại học với nhiều dự án, bài tập nhóm và kiến thức chuyên môn.
+                </p>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://via.placeholder.com/150?text=Class+Photo" alt="Lớp học" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                    <img src="https://via.placeholder.com/150?text=Graduation" alt="Tốt nghiệp" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                </div>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:shadow-lg transition duration-300 border border-white/20 hover:border-yellow-300/50">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-400 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold" data-i18n="work">Công Việc</h3>
+                </div>
+                <p class="text-gray-200 mb-4" data-i18n="work_desc">
+                    Trải nghiệm làm việc tại các công ty công nghệ, tham gia vào những dự án thực tế và học hỏi từ các đồng nghiệp giàu kinh nghiệm.
+                </p>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://via.placeholder.com/150?text=Office" alt="Văn phòng" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                    <img src="https://via.placeholder.com/150?text=Team" alt="Đồng nghiệp" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                </div>
+            </div>
+
+            <!-- Clubs & Activities -->
+            <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:shadow-lg transition duration-300 border border-white/20 hover:border-yellow-300/50">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-400 p-3 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold" data-i18n="clubs">CLB & Hoạt Động</h3>
+                </div>
+                <p class="text-gray-200 mb-4" data-i18n="clubs_desc">
+                    Tham gia các câu lạc bộ trong trường đại học, tổ chức sự kiện và gặp gỡ nhiều người bạn mới. Những kỷ niệm đáng nhớ từ các chuyến đi và hoạt động ngoại khóa.
+                </p>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://via.placeholder.com/150?text=Club" alt="Câu lạc bộ" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                    <img src="https://via.placeholder.com/150?text=Event" alt="Sự kiện" class="rounded-lg h-24 w-full object-cover border border-white/20">
+                </div>
+            </div>
+        </div>
+
+        <!-- View More Button -->
+        <div class="text-center mt-12">
+            <a href="#gallery" class="inline-flex items-center px-6 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition duration-300 bg-white/10 hover:bg-white/20 backdrop-blur-sm">
+                <span data-i18n="view_more">Xem thêm kỷ niệm</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6 bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
         <div class="container mx-auto max-w-6xl">

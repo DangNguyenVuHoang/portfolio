@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skills: "Kỹ năng",
             projects: "Dự án",
             contact: "Liên hệ",
+            activities: "Hoạt động",
 
 
             // Thêm các bản dịch khác tại đây
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skills: "Skills",
             projects: "Projects",
             contact: "Contact",
+            activities: "Activities",
 
             // Thêm các bản dịch khác tại đây
             //Lời chào đầu tiên
@@ -59,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             skills: "スキル",
             projects: "プロジェクト",
             contact: "連絡先",
+            activities: "仕事",
 
             // Thêm các bản dịch khác tại đây
             // Lời chào đầu tiên
