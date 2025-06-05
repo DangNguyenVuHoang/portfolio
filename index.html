@@ -10,53 +10,54 @@
     <script src="./service/index.js" defer></script>
     <!-- <script src="./service/config.example.js"></script> -->
     <script src="./service/config.js"></script>
-     <script src="./service/translations.js"></script>
-     <script src="./service/chatbotai.js"></script>
+    <script src="./service/translations.js"></script>
+    <script src="./service/chatbotai.js"></script>
+    <script src="./service/downloadcv.js"></script>
 
 </head>
 
 <body class="bg-gray-100 font-sans">
 
-<!-- Greeting Modal -->
-<div id="greeting-modal" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-    <div class="relative flex items-center justify-center min-h-screen p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 mx-4 max-w-md w-full animate-[slideDown_0.5s]">
-            <h3 class="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white" id="greeting-text" 
-                data-i18n="greeting">Xin chào! 👋</h3>
-            <div id="name-input-container">
-                <input type="text" id="visitor-name" 
-                       data-i18n-placeholder="name_placeholder"
-                       placeholder="Tên của bạn là..."
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
-                    autocomplete="off">
-                <div class="flex gap-3 mt-4">
-                    <button id="save-name-btn"
-                        class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors duration-200"
-                        data-i18n="save_name">
-                        Lưu tên
-                    </button>
-                    <button id="skip-btn"
-                        class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white py-2 px-4 rounded-lg transition-colors duration-200"
-                        data-i18n="skip">
-                        Bỏ qua
+    <!-- Greeting Modal -->
+    <div id="greeting-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative flex items-center justify-center min-h-screen p-4">
+            <div
+                class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 mx-4 max-w-md w-full animate-[slideDown_0.5s]">
+                <h3 class="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white" id="greeting-text"
+                    data-i18n="greeting">Xin chào! 👋</h3>
+                <div id="name-input-container">
+                    <input type="text" id="visitor-name" data-i18n-placeholder="name_placeholder"
+                        placeholder="Tên của bạn là..."
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+                        autocomplete="off">
+                    <div class="flex gap-3 mt-4">
+                        <button id="save-name-btn"
+                            class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                            data-i18n="save_name">
+                            Lưu tên
+                        </button>
+                        <button id="skip-btn"
+                            class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                            data-i18n="skip">
+                            Bỏ qua
+                        </button>
+                    </div>
+                </div>
+                <div id="welcome-back-container" class="hidden text-center">
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="welcome_back">
+                        Chào mừng trở lại,
+                        <span id="saved-name" class="font-semibold text-indigo-600 dark:text-indigo-400"></span>!
+                    </p>
+                    <button id="close-greeting-btn"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg transition-colors duration-200"
+                        data-i18n="close">
+                        Đóng
                     </button>
                 </div>
             </div>
-            <div id="welcome-back-container" class="hidden text-center">
-                <p class="text-gray-600 dark:text-gray-300 mb-4" data-i18n="welcome_back">
-                    Chào mừng trở lại,
-                    <span id="saved-name" class="font-semibold text-indigo-600 dark:text-indigo-400"></span>!
-                </p>
-                <button id="close-greeting-btn"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg transition-colors duration-200"
-                    data-i18n="close">
-                    Đóng
-                </button>
-            </div>
         </div>
     </div>
-</div>
 
     <!-- Navigation -->
     <nav class="fixed w-full bg-white backdrop-blur-sm shadow-sm z-50 dark:bg-gray-900/90 transition-all duration-300">
@@ -198,8 +199,8 @@
                             <button id="mobile-language-toggle" aria-label="Change language"
                                 class="flex items-center space-x-2 text-gray-800 dark:text-gray-200 px-3 py-1.5 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                                 <span id="mobile-current-language" class="text-sm font-medium">VI</span>
-                                <svg class="w-4 h-4 transition-transform duration-200" id="mobile-language-arrow" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 transition-transform duration-200" id="mobile-language-arrow"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                         d="M19 9l-7 7-7-7"></path>
                                 </svg>
@@ -229,31 +230,31 @@
             </div>
         </div>
     </nav>
-    <!-- choi troi ti ha -->
     <!-- Hero Section -->
     <section id="home" class="pt-28 pb-24 px-6 bg-gradient-to-br from-indigo-600 to-purple-700 text-white">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
             <!-- Text Content -->
             <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                    Xin chào, tôi là <span class="text-yellow-300 animate-pulse">Đặng Nguyễn Vũ Hoàng</span>
+                    <span data-i18n="hello">Xin chào, tôi là</span> <span class="text-yellow-300 animate-pulse"
+                        data-i18n="myname">Đặng Nguyễn Vũ Hoàng</span>
                 </h1>
-                <h2 class="text-2xl md:text-3xl mb-6 font-medium text-indigo-100">
+                <h2 class="text-2xl md:text-3xl mb-6 font-medium text-indigo-100" data-i18n="position">
                     Software Engineer & Developer
                 </h2>
-                <p class="text-lg md:text-xl mb-8 max-w-lg mx-auto md:mx-0 text-indigo-100">
+                <p class="text-lg md:text-xl mb-8 max-w-lg mx-auto md:mx-0 text-indigo-100" data-i18n="intro">
                     Là một sinh viên ngành công nghệ thông tin vừa mới tốt đại học. Chuyên ngành hẹp mảng công nghệ
                     thông tin của tôi là về kỹ thuật phần mềm.
-                    <!-- Chuyên phát triển các giải pháp phần mềm sáng tạo và hiệu quả. Luôn đam mê học hỏi công nghệ mới và
-                    tạo ra những sản phẩm chất lượng. -->
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <a href="#contact"
-                        class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        data-i18n="contact_me">
                         Liên hệ với tôi
                     </a>
                     <a href="#projects"
-                        class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        data-i18n="view_projects">
                         Dự án của tôi
                     </a>
                 </div>
@@ -265,20 +266,18 @@
                     <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/322199108_1236293113766017_7658013667223602665_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHOvvRu3JJ6KDvNzoTCBLjd9RpwVuokM7f1GnBW6iQzt-MkOdfQtYj4EtDL1Ja25bdQy_tZHijkX7o5XcsQAG6m&_nc_ohc=58wQUCEILqQQ7kNvwE6NoH1&_nc_oc=AdnXMrkXYTcXKBqbI1hJBaDpP_stfxx_0BAjd8B_OaObP262spSXlfEhzZnRNbHnbyE&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=tIiy_mNJwYaw_e5A0wX0Fg&oh=00_AfJAITe-dRDUOs9QoSG33LpBWeuh8B-tBcnFKRyfORvTbA&oe=68439B45"
                         alt="Đặng Nguyễn Vũ Hoàng"
                         class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white shadow-2xl transform hover:scale-105 transition duration-500">
-                    <!-- <div
-                        class="absolute -bottom-2 -right-2 bg-yellow-400 text-gray-800 px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                        ONLINE
-                    </div> -->
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- About Section -->
     <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">Giới thiệu về tôi</h2>
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4" data-i18n="about.title">Giới thiệu về
+                    tôi</h2>
                 <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
             </div>
 
@@ -297,19 +296,25 @@
 
                 <!-- Content -->
                 <div class="lg:w-3/5">
-                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6">Software Engineer & Developer
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6" data-i18n="about.subtitle">
+                        Software Engineer & Developer
                     </h3>
 
                     <div class="space-y-4 mb-8">
-                        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                            Xin chào! Tôi là Đặng Nguyễn Vũ Hoàng, với định hướng trở thành một kỹ sư phần mềm
-                            Full-Stack, tôi thích và đam mê công nghệ.
+                        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+                            data-i18n="about.description1">
+                            Xin chào! Tôi là Đặng Nguyễn Vũ Hoàng, với định hướng trở thành một
+                            <span class="font-semibold">Kỹ sư phần mềm Full-Stack </span> và đồng thời mong muốn là
+                            <span class="font-semibold">Trợ giảng IT</span> (Part-time) để truyền đạt kiến thức và học
+                            hỏi kiến thức mới từ lĩnh vực giảng dạy công nghệ.
                         </p>
-                        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                            Với nền tảng vững chắc về khoa học máy tính và kinh nghiệm làm việc qua các dự án các nhân
+                        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+                            data-i18n="about.description2">
+                            Với nền tảng vững chắc về khoa học máy tính và kinh nghiệm làm việc qua các dự án cá nhân về
                             công
+
                             nghệ, tôi tự tin có thể mang lại những giải pháp tối ưu cho các bài toán phức tạp. Niềm đam
-                            mê coding của tôi không chỉ dừng lại ở công việc mà còn là sở thích hàng ngày.
+                            mê công nghệ của tôi không chỉ dừng lại ở công việc mà còn là sở thích hàng ngày.
                         </p>
                     </div>
 
@@ -325,7 +330,8 @@
                                 </path>
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tuổi</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                    data-i18n="about.age.label">Tuổi</p>
                                 <p class="text-gray-900 dark:text-white font-semibold">23</p>
                             </div>
                         </div>
@@ -342,8 +348,10 @@
                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Địa chỉ</p>
-                                <p class="text-gray-900 dark:text-white font-semibold">Tp. Hồ Chí Minh, Việt Nam</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                    data-i18n="about.location.label">Địa chỉ</p>
+                                <p class="text-gray-900 dark:text-white font-semibold" data-i18n="about.location.value">
+                                    Tp. Hồ Chí Minh, Việt Nam</p>
                             </div>
                         </div>
 
@@ -357,7 +365,8 @@
                                 </path>
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Email</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                    data-i18n="about.email.label">Email</p>
                                 <a href="mailto:dangnguyenvuhoang8384@gmail.com"
                                     class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline break-all">dangnguyenvuhoang8384@gmail.com</a>
                             </div>
@@ -372,10 +381,11 @@
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Freelance/Onsite</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                    data-i18n="about.availability.label">Freelance/Onsite</p>
                                 <p class="text-green-600 dark:text-green-400 font-semibold flex items-center">
                                     <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-                                    Sẵn sàng
+                                    <span data-i18n="about.availability.value">Sẵn sàng</span>
                                 </p>
                             </div>
                         </div>
@@ -390,17 +400,26 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            Liên hệ ngay
+                            <span data-i18n="about.contact_button">Liên hệ ngay</span>
                         </a>
-                        <a href="#"
-                            class="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center">
+                        <!-- <a href="#"
+                        class="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span data-i18n="about.download_cv">Tải CV</span>
+                    </a> -->
+                        <button id="downloadCvBtn"
+                            class="border border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition duration-300 flex items-center cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-                            Tải CV
-                        </a>
+                            <span data-i18n="about.download_cv">Tải CV</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -477,11 +496,12 @@
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200 font-medium">Tiếng Nhật giao tiếp tương N4</span>
+                            <span class="text-gray-800 dark:text-gray-200 font-medium">Tiếng Nhật đọc tài liệu cơ bản</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200 font-medium">Có khả năng đọc và hiểu Tiếng Anh</span>
+                            <span class="text-gray-800 dark:text-gray-200 font-medium">Có khả năng đọc và hiểu Tiếng
+                                Anh</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-500 rounded-full mr-3"></div>
@@ -510,24 +530,37 @@
                         <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">Đang học tập & Phát triển</h3>
                     </div>
                     <p class="text-gray-600 dark:text-gray-300 mb-6">
-                        Những lĩnh vực tôi đang tích cực học hỏi để mở rộng kiến thức và trở thành Full-stack Developer.
+                        Những lĩnh vực tôi đang tích cực học hỏi để mở rộng kiến thức và phát triển bản thân hơn.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200">JavaScript nâng cao (Node.js)</span>
+                            <span class="text-gray-800 dark:text-gray-200">Luyện kỹ năng giao tiếp và giảng dạy</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200">Java Spring Boot</span>
+                            <span class="text-gray-800 dark:text-gray-200">Luyện thi chứng chỉ quốc tế (Toiec, JLPT và
+                                PMP)</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200">Kiến trúc hệ thống</span>
+                            <span class="text-gray-800 dark:text-gray-200">Áp dụng xu hướng AI vào làm việc hằng
+                                ngày</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
-                            <span class="text-gray-800 dark:text-gray-200">Cơ sở dữ liệu (SQL/NoSQL)</span>
+                            <span class="text-gray-800 dark:text-gray-200">JavaScript nâng cao (Node.js) và Java Spring
+                                Boot</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
+                            <span class="text-gray-800 dark:text-gray-200">Kiến trúc hệ thống và Cơ sở dữ liệu
+                                (SQL/NoSQL)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-indigo-300 rounded-full mr-3"></div>
+                            <span class="text-gray-800 dark:text-gray-200">Công cụ triển khai hệ thống(AWS, Docker,
+                                Vercel)</span>
                         </div>
                     </div>
                 </div>
@@ -547,7 +580,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              
+
 
                 <!-- Project 1 -->
                 <div
@@ -568,7 +601,8 @@
                                 class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded-full">2025</span>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Giới thiệu thông tin cá nhân. Có App Script nhận thông báo gián tiếp về Email. Có Chatbox trả lời câu hỏi cơ bản.
+                            Giới thiệu thông tin cá nhân. Có App Script nhận thông báo gián tiếp về Email. Có Chatbox
+                            trả lời câu hỏi cơ bản.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-5">
                             <span
@@ -577,10 +611,12 @@
                                 class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Javascript</span>
                             <span
                                 class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Tailwind</span>
-                                <span
-                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Github API</span>
-                                <span
-                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">App Script</span>
+                            <span
+                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Github
+                                API</span>
+                            <span
+                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">App
+                                Script</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <a href="https://portfolioupdate-azure.vercel.app/"
@@ -592,7 +628,8 @@
                                         d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-                            <a href="https://github.com/DangNguyenVuHoang/portfolio.git" class="text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400"
+                            <a href="https://github.com/DangNguyenVuHoang/portfolio.git"
+                                class="text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400"
                                 aria-label="GitHub Repository">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd"
@@ -617,7 +654,8 @@
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Create template landing page</h3>
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Create template landing page
+                            </h3>
                             <span
                                 class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded-full">2025</span>
                         </div>
@@ -642,7 +680,8 @@
                                         d="M9 5l7 7-7 7" />
                                 </svg>
                             </a>
-                            <a href="https://github.com/DangNguyenVuHoang/nextjstemplates.git" class="text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400"
+                            <a href="https://github.com/DangNguyenVuHoang/nextjstemplates.git"
+                                class="text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400"
                                 aria-label="GitHub Repository">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd"
@@ -654,7 +693,7 @@
                     </div>
                 </div>
 
-                  <!-- Project 3 -->
+                <!-- Project 3 -->
                 <div
                     class="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                     <div class="relative overflow-hidden h-60">
@@ -667,13 +706,15 @@
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Build a system to support OCOP businesses in storing and delivering goods using dark store model
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Build a system to support
+                                OCOP businesses in storing and delivering goods using dark store model
                             </h3>
                             <span
                                 class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-2 py-1 rounded-full">2024</span>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            BeeShelf là giải pháp hỗ trợ các doanh nghiệp OCOP trong việc quản lý hàng tồn kho, xử lý đơn hàng và giao hàng.
+                            BeeShelf là giải pháp hỗ trợ các doanh nghiệp OCOP trong việc quản lý hàng tồn kho, xử lý
+                            đơn hàng và giao hàng.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-5">
                             <span
@@ -681,7 +722,8 @@
                             <span
                                 class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Tailwind</span>
                             <span
-                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Ant Design</span>
+                                class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 text-xs rounded-full">Ant
+                                Design</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <a href="https://github.com/DangNguyenVuHoang/beeshelf_frontend.git"

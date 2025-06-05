@@ -1,5 +1,5 @@
- document.addEventListener('DOMContentLoaded', function () {
- // Đối tượng chứa các bản dịch
+document.addEventListener('DOMContentLoaded', function () {
+    // Đối tượng chứa các bản dịch
     const translations = {
         vi: {
             home: "Trang chủ",
@@ -7,22 +7,26 @@
             skills: "Kỹ năng",
             projects: "Dự án",
             contact: "Liên hệ",
-            hello: "Xin chào, tôi là",
-            position: "Lập trình viên Full-stack",
-            intro: "Tôi là lập trình viên với 5 năm kinh nghiệm...",
-            download_cv: "Tải CV",
-            view_projects: "Xem tất cả dự án",
-            contact_me: "Liên hệ với tôi",
-            send_message: "Gửi tin nhắn",
+
+
             // Thêm các bản dịch khác tại đây
             //Lời chào đầu tiên
             // ... các bản dịch hiện có ...
-        greeting: "Xin chào! 👋",
-        name_placeholder: "Tên của bạn là...",
-        save_name: "Lưu tên",
-        skip: "Bỏ qua",
-        welcome_back: "Chào mừng trở lại, {name}!",
-        close: "Đóng"
+            greeting: "Xin chào! 👋",
+            name_placeholder: "Tên của bạn là...",
+            save_name: "Lưu tên",
+            skip: "Bỏ qua",
+            welcome_back: "Chào mừng trở lại, {name}!",
+            close: "Đóng",
+            //Thẻ hero đầu tiên
+            hello: "Xin chào, tôi là",
+            myname: "Đặng Nguyễn Vũ Hoàng",
+            position: "Software Engineer & Developer",
+            intro: "Là một sinh viên ngành công nghệ thông tin vừa mới tốt đại học. Chuyên ngành hẹp mảng công nghệ thông tin của tôi là về kỹ thuật phần mềm.",
+            contact_me: "Liên hệ với tôi",
+            view_projects: "Dự án của tôi",
+            /// About
+            
         },
         en: {
             home: "Home",
@@ -30,21 +34,24 @@
             skills: "Skills",
             projects: "Projects",
             contact: "Contact",
-            hello: "Hello, I'm",
-            position: "Full-stack Developer",
-            intro: "I'm a developer with 5 years of experience...",
-            download_cv: "Download CV",
-            view_projects: "View all projects",
-            contact_me: "Contact me",
-            send_message: "Send message",
+
             // Thêm các bản dịch khác tại đây
             //Lời chào đầu tiên
             greeting: "Hello! 👋",
-        name_placeholder: "Your name is...",
-        save_name: "Save name",
-        skip: "Skip",
-        welcome_back: "Welcome back, {name}!",
-        close: "Close"
+            name_placeholder: "Your name is...",
+            save_name: "Save name",
+            skip: "Skip",
+            welcome_back: "Welcome back, {name}!",
+            close: "Close",
+            //Thẻ hero đầu tiên
+            hello: "Hello, I'm",
+            myname: "Dang Nguyen Vu Hoang",
+            position: "Software Engineer & Developer",
+            intro: "I'm a recent IT graduate specializing in software engineering. My focused area in information technology is software development.",
+            contact_me: "Contact me",
+            view_projects: "My projects",
+            ///about
+   
         },
         ja: {
             home: "ホーム",
@@ -52,21 +59,24 @@
             skills: "スキル",
             projects: "プロジェクト",
             contact: "連絡先",
-            hello: "こんにちは、私は",
-            position: "フルスタック開発者",
-            intro: "私は5年の経験を持つ開発者です...",
-            download_cv: "履歴書をダウンロード",
-            view_projects: "すべてのプロジェクトを見る",
-            contact_me: "お問い合わせ",
-            send_message: "メッセージを送る",
+
             // Thêm các bản dịch khác tại đây
             // Lời chào đầu tiên
             greeting: "こんにちは！ 👋",
-        name_placeholder: "あなたの名前は...",
-        save_name: "名前を保存",
-        skip: "スキップ",
-        welcome_back: "おかえりなさい、{name}さん！",
-        close: "閉じる"
+            name_placeholder: "あなたの名前は...",
+            save_name: "名前を保存",
+            skip: "スキップ",
+            welcome_back: "おかえりなさい、{name}さん！",
+            close: "閉じる",
+            //Thẻ hero đầu tiên
+            hello: "こんにちは、私は",
+            myname: "ダン・ホアン",
+            position: "ソフトウェアエンジニア & デベロッパー",
+            intro: "私はソフトウェア工学を専門とする新卒のIT学生です。情報技術における私の専門分野はソフトウェア開発です。",
+            contact_me: "お問い合わせ",
+            view_projects: "私のプロジェクト",
+            //about
+
         }
     };
 
