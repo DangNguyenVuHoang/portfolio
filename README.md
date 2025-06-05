@@ -5,7 +5,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/DangNguyenVuHoang/portfolio)
 
 
-🌐 [Live Demo] https://portfolioupdatenew.vercel.app/ |
+🌐 [Live Demo] [https://portfolioupdatenew.vercel.app/](https://dangnguyenvuhoang.vercel.app/) |
 
 A personal portfolio website showcasing my skills, experience, and contact information.
 
