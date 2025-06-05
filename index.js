@@ -154,63 +154,43 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
+
+    // Khởi tạo mode light khi load trang   
     // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
     // const darkModeIcon = document.getElementById('dark-mode-icon');
     const moonIcon = document.getElementById('moon-icon');
     const sunIcon = document.getElementById('sun-icon');
-
     const mobileSunIcon = document.getElementById('mobile-sun-icon');
     const mobileMoonIcon = document.getElementById('mobile-moon-icon');
-    // Check for saved dark mode preference
-    // ...existing code...
-    // Check for saved dark mode preference
-    const darkMode = localStorage.getItem('darkMode') === 'true' ||
-        (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    // ...existing code...
-    // Apply initial dark mode state
-    if (darkMode) {
-        document.documentElement.classList.add('dark');
-        moonIcon.classList.add('hidden');
-        sunIcon.classList.remove('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        moonIcon.classList.remove('hidden');
-        sunIcon.classList.add('hidden');
-    }
 
-    const darkMobileMode = localStorage.getItem('darkMode') === 'true' ||
-        (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.remove('dark');
+    moonIcon.classList.remove('hidden');
+    sunIcon.classList.add('hidden');
+    mobileMoonIcon.classList.remove('hidden');
+    mobileSunIcon.classList.add('hidden');
 
-    // Apply initial dark mode mobile state
-    if (darkMobileMode) {
-        document.documentElement.classList.add('dark');
-        mobileMoonIcon.classList.add('hidden');
-        mobileSunIcon.classList.remove('hidden');
-    } else {
-        document.documentElement.classList.remove('dark');
-        mobileMoonIcon.classList.remove('hidden');
-        mobileSunIcon.classList.add('hidden');
-    }
-
+    
     // Toggle dark mode
     darkModeToggle.addEventListener('click', function () {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('darkMode', isDark);
+        
+        // Cập nhật icon cho desktop
+        moonIcon.classList.toggle('hidden', isDark);
+        sunIcon.classList.toggle('hidden', !isDark);
 
-        // Toggle icons
-        moonIcon.classList.toggle('hidden');
-        sunIcon.classList.toggle('hidden');
     });
     // Toggle mobile mode
     mobileDarkModeToggle.addEventListener('click', function () {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('darkMode', isDark);
 
-        // Toggle icons
-        mobileMoonIcon.classList.toggle('hidden');
-        mobileSunIcon.classList.toggle('hidden');
+         // Cập nhật icon cho mobile
+        mobileMoonIcon.classList.toggle('hidden', isDark);
+        mobileSunIcon.classList.toggle('hidden', !isDark);
     });
 
     /// Form gửi tin nhắn
