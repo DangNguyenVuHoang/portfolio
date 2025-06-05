@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-   function downloadSampleCV() {
-    // Đường dẫn đến file CV mẫu đã có sẵn
-    const cvUrl = '/path/to/your/sample-cv.pdf'; // Thay đổi đường dẫn này
+//    function downloadSampleCV() {
+//     // Đường dẫn đến file CV mẫu đã có sẵn
+//     const cvUrl = '/path/to/your/sample-cv.pdf'; // Thay đổi đường dẫn này
     
-    // Tạo một thẻ a ẩn để tải file
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'CV-Mau.pdf'; // Tên file khi tải về
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+//     // Tạo một thẻ a ẩn để tải file
+//     const link = document.createElement('a');
+//     link.href = cvUrl;
+//     link.download = 'CV-Mau.pdf'; // Tên file khi tải về
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// }
 
     // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
