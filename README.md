@@ -55,7 +55,6 @@ This project runs on a local live server. To test:
 1. Open the project in VS Code
 2. Install the Live Server extension
 3. Right-click on `index.html` and select "Open with Live Server"
-4. The site will automatically open at `http://localhost:5500`
 
 ## 📞 Contact
 📧 Email: dangnguyenvuhoang8384@gmail.com
