@@ -62,4 +62,4 @@ This project runs on a local live server. To test:
 ## 🛠️ Installation (Alternative)
 Clone repository:
 ```bash
-git clone https://github.com/yourusername/your-repo](https://github.com/DangNguyenVuHoang/portfolio.git
+git clone https://github.com/DangNguyenVuHoang/portfolio.git
